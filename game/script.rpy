@@ -1,33 +1,38 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-
-
-# The game starts here.
+﻿define jonah = Character("Jonah")
+define camiel = Character("Camiel")
 
 label start:
+  jonah "Okay, who killed him?"
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+  camiel "idk"
 
-    scene bg room
+  jonah "Camiel."
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+  camiel "what"
 
-    show eileen happy
+  menu:
+    "Accuse Camiel":
+      jump accuse_camiel
 
-    # These display lines of dialogue.
+    "Investigate the .craw file":
+      jump investigate_craw
 
-    e "You've created a new Ren'Py game."
+label accuse_camiel:
+  jonah "You did it."
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+  camiel "no"
 
-    # This ends the game.
+  "BAD END"
 
-    return
+  return
+
+label investigate_craw:
+  "You pick up the mysterious .craw file."
+
+  jonah "Interesting..."
+
+  camiel "we'll make the craw files"
+
+  "TO BE CONTINUED"
+
+  return

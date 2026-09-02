@@ -24,3 +24,15 @@
 /dialogue.tab
 /dialogue.txt
 /strings.json
+
+*.rpyc
+*.rpymc
+
+game/cache/
+game/saves/
+
+log.txt
+traceback.txt
+errors.txt
+
+*-dists/
