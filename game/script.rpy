@@ -1,38 +1,44 @@
 ﻿define jonah = Character("Jonah")
-define camiel = Character("Camiel")
+define natye = Character("Natye")
+
+default has_craw_file = False
 
 label start:
-  jonah "Okay, who killed him?"
+  scene black
 
-  camiel "idk"
+  "The Stardance server had gone unusually quiet."
 
-  jonah "Camiel."
+  jonah "That's never a good sign."
 
-  camiel "what"
+  natye "yeah probably not"
 
   menu:
-    "Accuse Camiel":
-      jump accuse_camiel
+    "Check the desk":
+      jump check_desk
 
-    "Investigate the .craw file":
-      jump investigate_craw
+    "Question natye":
+      jump question_natye
 
-label accuse_camiel:
-  jonah "You did it."
+label check_desk:
+  "You find a suspicious .craw file."
 
-  camiel "no"
+  $ has_craw_file = True
 
-  "BAD END"
+  jonah "Interesting."
 
-  return
+  jump question_natye
 
-label investigate_craw:
-  "You pick up the mysterious .craw file."
+label question_natye:
+  if has_craw_file:
+    jonah "I found this on the desk."
 
-  jonah "Interesting..."
+    natye "we'll make the craw files"
 
-  camiel "we'll make the craw files"
+    jonah "That is an incredibly suspicious thing to say right now."
 
-  "TO BE CONTINUED"
+  else:
+    jonah "Did you see anything?"
+
+    natye "no"
 
   return

@@ -1,0 +1,311 @@
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!!SPOILERS AHEAD!
+
+                                        Premise
+
+Craw is being investigated heavily by an exaggerated caricature of Fraud Squad, while Crawssembly 2.0 is about to release.
+
+He decides to fake his death just after releasing the update, wait for the investigation to blow over, and reappear quietly.
+
+He tells nobody of the plan, instead he distributes tiny jobs among several people, each of whom thinks they're helping with the launch, rather than the faked death.
+
+Someone gets asked to write a strange `.craw` program
+Someone else helps with lighting
+Someone else provides hardware
+Someone else schedules something
+Someone tests networking
+
+Character A: Natye
+Character B: Rupnil
+Character C: Keeb
+Character D: Fazin
+Character E: Jam
+
+Nobody possesses enough info to understand what they're building, and thus, after the apparent murder, everyone has something they're reluctant to admit they helped Craw with.
+
+                                     Characters
+
+Character	What Craw asked for		What they thought	What it does
+
+A		Write unusual .craw code	Launch effects		Door control
+B		Provide controller hardware	Demo Hardware		Operated Doors
+C		Configure lighting and smoke	Dramatic Finale		Concealed Escape
+D		Set up scheduled actions	Release Announcements	Post-death messages
+E		Test basement networking	Demo Connectivity	Remote escape
+
+When interviewed independently, the characters eventually reveal the following:
+
+A: "I wrote some code for Craw"
+B: "I gave Craw some hardware"
+C: "I set up the blackout"
+D: "I scheduled his messages"
+E: "I made sure his laptop could reach the basement"
+
+                                        Timeline
+
+17:30 - Setup begins
+
+Stardance members arrive at the launch venue
+People set up laptops, separate project demonstrations, decorations, food, etc...
+Craw is unusually busy and keeps disappearing, which gives lots of characters small and innocuous observations:
+
+"I saw craw carrying a cable downstairs"
+"He asked me where the maintenance room was"
+"He borrowed my power bank"
+"He wanted to know whether the Wi-Fi reached the basement"
+
+18:15 - Craw prepares the escape system
+
+Craw secretly finishes preparing the fake-death mechanism, underneath the stage is an small corridor which leads to an old server room in the basement with electronically controlled doors, where the fatal engineering mistake lies.
+
+The escape route is:
+
+Stage --> backstage --> service corridor --> security door --> server room --> second exit --> outside
+
+During the fake death, Craw escapes through the stage mechanism and traverses this route, a Crawssembly program controls part of it, because of course it does.
+
+18:47 - First suspicious interaction
+
+Someone catches Craw working on something unrelated to the launch on his laptop, and he immediately closes it. This can become a witness statement later on.
+
+19:00 - The party begins
+
+The opening point of the game, with the light-hearted introduction sequence. The player walks around, and exchanges basic small-talk with some people, to introduce the cast, whilst encountering several minor clues before the player even knows they're clues.
+
+19:09 - Craw receives an FS message
+
+A visible event, Craw gets a message and his expression changes, but he denies any issue.
+
+19:30 - Project showcase
+
+Other stardance members present their projects, which gives alibis to some characters, perhaps provide a programme of events as evidence.
+
+19:50 - Craw secretly arms the system
+
+Craw is seen leaving the audience to go to his laptop. This is to arm the fake-death mechanism. 
+
+19:55 - Craw's final normal conversation
+
+The player has a seemingly normal conversation with Craw, where after he leaves to start his presentation
+
+20:00 - Crawssembly 2.0 presentation begins
+
+Lights dim, Craw gets on stage, and makes a grand entrance. It starts with a sincere presentation, but at the end he announces one final demo.
+
+20:07 - The "Murder"
+
+Lights suddenly go out, and a crash is heard, the emergency lights come back on and Craw is down, blood is visible. Nobody saw what happened during the ~5 seconds of darkness.
+
+Someone runs on stage, and panic engulfs the crowd. The electrical failure/smoke effect forces everyone away for a moment outside the building, but once the player returns, the body is gone.
+
+The initial assumption is that someone attached Craw and then removed the body, but actually:
+
+20:07:03 lights out
+20:07:04 fake impact
+20:07:05 Jonah falls
+20:07:08 lights partially return
+20:07:20 smoke/alarm
+20:07:30 crowd pushed away
+20:07:42 Jonah enters concealed exit
+
+20:08 - Craw enters the service corridor
+
+The fake death worked perfectly, once Craw reaches the door to the server room, the, still running, laptop remotely opens the door, but the second door doesn't open to let him out of the room, there is a bug in the Crawssembly code. With no way to leave the old server room, Craw is trapped. This is the exact moment the plan fails.
+
+20:10 - The investigation begins
+
+From everyone else's perspective, Craw has just been murdered. From Craw's perspective, he's locked himself in a basement.
+
+The player should now start collecting evidence from witnesses and the core characters
+
+20:12 - The schedules messages begin
+
+Craw is dead, but he appears online in the #stardance channel, the global "group chat" that all characters use.
+
+A message appears, automated from Craw's laptop, from which mania ensues from the crowd. Theories become:
+
+The killer has Craw's account
+Craw schedules it
+Craw isn't dead
+The account has been hacked
+A bot sent the message
+Someone is impersonating Craw
+
+This is the first major hint that some obvious interpretation is incorrect.
+
+20:17 - A Git commit appears
+
+Another impossible event, on the Crawssembly repo a new commit pushed by Craw appears. Current theories get galvanized.
+
+??:?? - Craw cutscene
+
+Cut to black, with an unknown person (Craw) being trapped in a black room
+
+20:30 - Evidence suggests foul play
+
+The laptop is recovered showing the script used to cut the lights. The player finds that the core characters helped in the creation of the code, hardware, and setup. Because Craw intentionally distributed his preparations, everyone included looks guilty. This creates conspiracy within the wider crowd.
+
+The player now does the classic "Who dunnit?" series of events to pin the blame on one of the core characters
+
+21:00 - Act I Climax
+
+The player has assembled a classic murder theory, and accuses one of the core characters. But a sudden new development causes that theory to be impossible. The theory collapses and it's concluded that it was a fake death.
+
+Act II and Act III are not time dependant.
+
+Act II:
+
+FS Investigation -> Motive to disappear
+Strange Requests -> Preparation
+`death.craw` -> Automated Plan
+Missing Body -> Escape
+Scheduled Messages -> Manufactured Activity
+But Craw should still have resurfaced, an uncovered clue shows that his plan expected him to have escaped by 20:30, so now the investigation turns goes from "Who killed Craw?" to "Why did Craw fake his death?" to "Where is Craw?"
+
+`escape.craw` is recovered from the laptop, and shows a route from the stage to the basement
+
+Act III:
+
+The player properly examines the method of escape, and the bug in the code is found. The entire mystery ultimately hinges upon Craw making a programming error.
+
+The player follows the program, guided by someone who actually knows Crawssembly code (Because we can't expect people to read a new program and understand what it means) and follows the bug from corridor -> first door -> server room -> broken second door.
+
+The player opens the door to the server room, and Craw is inside.
+
+                                      General Chain
+FRAUD SQUAD
+    |
+    V
+Craw wants to disappear
+    |
+    V
+Craw constructs fake death
+    |
+    |-- code ------ Character A
+    |-- hardware -- Character B
+    |-- lighting -- Character C
+    |-- scheduling - Character D
+    |-- networking - Character E
+    |
+    V
+20:07 apparent murder
+    |
+    V
+Everyone's partial involvement looks incriminating
+    |
+    V
+ACT I: "Who killed Craw?"
+    |
+    V
+No murder occurred
+    |
+    V
+ACT II: "Why did Craw fake his death?"
+    |
+    V
+FS motive + escape plan discovered
+    |
+    V
+"But he should have escaped by 20:30."
+    |
+    V
+ACT III: "Where is Craw?"
+    |
+    V
+Bug in escape.craw
+    |
+    V
+SERVER ROOM
+    |
+    V
+goober located
+
+                                      Clues
+
+Every major revelation should take no fewer than 3 clues. The player should be able to suspect each answer before the game confirms it.
+
+Proposition A: nobody murdered Craw.
+
+The player should eventually be able to prove that from multiple angles: the blood wasn't real; the apparent attack was initiated automatically; nobody could have removed the body in the available window; perhaps nobody actually saw a wound; the blackout/smoke sequence was prepared before the event.
+
+Proposition B: Craw deliberately staged his death because of FS.
+
+Again, multiple clues: the FS message at 19:09; strange preparatory requests; the automation code; evidence of a planned escape route; scheduled post-death activity; perhaps something showing he'd prepared to be absent afterwards.
+
+Proposition C: Craw intended to escape but became trapped.
+
+This is the cleverest deduction and should therefore be the hardest. Evidence that he expected to be elsewhere after 20:30; something scheduled assuming he'd escaped; no evidence that he actually reached the outside; finally, the bug in the door-control code.
+
+Impossible Fact: The body couldn't have been removed.
+
+CCTV footage by the doors, where the crowd evacuated after the smoke, shows all main characters leaving with no body, showing that none of the suspects could have carried off the body.
+
+Body moved -> Craw is alive -> No murder
+
+Act I provides `death.craw`
+Act II provides `escape.craw`
+Act III provides the bug in `escape.craw`
+
+Evidence		Initial interpretation		Actual Meaning		Source
+
+Event Program		Establishes group movements	No Change		Party
+Craw disappearing	Secret meetings/conflict	Preparing escape	Witnesses
+Cable taken downstairs	Unknown				Escape hardware		Witness
+Borrowed power bank	Trivial activity		Backup power for escape	Witness
+Craw's queries of Wi-Fi	Odd but irrelevant		Testing reliability	Witness
+19:09 FS message	Threatening/pressuring Craw	Motive to disappear	Seen
+18:47 laptop hide	Craw is hiding something	Fake-death planning	Witness
+A wrote suspicious code	A prepared murder mechanism	Craw commissioned	A
+B supplied equipment	B helped construct the murder	Craw commissioned	B
+C caused smoke		Extremely suspicious		Craw commissioned	C
+D arranged messages	D is controlling Craw's account	Craw commissioned	D
+E tested connection	Remote control murder apparatus	Craw commissioned	E
+Craw's blood		Craw was killed			Theatrical Blood	Crime scene
+No obvious weapon	Killer removed it		There wasn't one	Crime scene
+Craw's body disappears	Killer removed it		Craw walked away	Crime scene
+20:12 slack message	account compromised		Scheduled by Craw	#stardance
+20:17 Git commit	Same mystery intensifies	Automated release	Git
+Stage effects script	Someone engineered the murder	Craw faked the death	Laptop
+Exit footage		Nobody removed Craw		Craw walked away	Late Act I
+Concealed Stage Route	Craw's escape route		No change		Act II
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
