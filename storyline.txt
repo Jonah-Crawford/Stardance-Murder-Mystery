@@ -29,12 +29,6 @@ Someone else provides hardware
 Someone else schedules something
 Someone tests networking
 
-Character A: Natye
-Character B: Rupnil
-Character C: Keeb
-Character D: Fazin
-Character E: Jam
-
 Nobody possesses enough info to understand what they're building, and thus, after the apparent murder, everyone has something they're reluctant to admit they helped Craw with.
 
                                      Characters
@@ -54,6 +48,15 @@ B: "I gave Craw some hardware"
 C: "I set up the blackout"
 D: "I scheduled his messages"
 E: "I made sure his laptop could reach the basement"
+
+   X	Keyboard		Rupnil		Nayte		Jam		Fazin
+Role	Basement networking	`.craw` code	Scheduling	Door-control	Blackout
+Initial	Remote access		Murder code	impersonation	Physical device	Hidden kill
+Acts	Cooperative		Literal		Unfazed		Matter-of-fact	Secretive
+Suspect	Connection Persists	Knows FS/code	Message control	Hardware found	Stage lies
+Act I	Network logs		`death.craw`	Messages	Controller	Stage times
+Act II	Escape network		Explains code	20:30 deadline	Door system	Craw plan
+Act III	Locates net activity	`escape.craw`	Automation end	Maps device ID	Escape time
 
                                         Timeline
 
