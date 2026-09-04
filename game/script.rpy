@@ -16,7 +16,7 @@ define trkl      = Character("Trkl")
 define water     = Character("Water")
 
 define narrator  = Character(None)
-define _         = Character("???")
+define unknown   = Character("???")
 
 default player_name = "You"
 
@@ -64,7 +64,7 @@ init python:
     ],
 
     "Scheduled Messages" : [
-      "Craw told Nayte to stopp making scheduled messages after 20:30",
+      "Craw told Nayte to stop making scheduled messages after 20:30",
       "Craw expected to be available by 20:30",
       "Craw expected to be available by 20:30"
     ],
@@ -90,7 +90,6 @@ init python:
     except:
       return evidence.title()
 
-  def increment_act(): current_act += 1
 
 label start:
   scene black
@@ -812,7 +811,7 @@ label apparent_murder:
 
   rupnil "BRO WHAAA"
 
-  jam ""
+  jam "..."
 
   fazin "No no no"
 
@@ -984,7 +983,7 @@ label investigate_laptop:
 
   pause 0.5
 
-  player ""
+  player "..."
 
   player "Those aren't logs from after the fact"
 
@@ -1782,7 +1781,7 @@ label question_keyboard:
 
   keyboard "Locked, I can't seem to get past"
 
-  jam "This hardware looks like an electronic lock, someone would need access to get them open"
+  jam "This hardware looks like an electronic-logging lock, someone would need access to get them open. "
 
   narrator "Nothing looks out of the ordinary"
 
@@ -2296,6 +2295,7 @@ label investigate_alibis:
   pause 1.0
 
   hide gl2011
+  with dissolve
 
   narrator "Four contributors"
 
@@ -2475,9 +2475,6 @@ label murder_reconstruction_final:
   hide rupnil
   with dissolve
 
-  scene corridor
-  with dissolve
-
   narrator "Then the killer uses the basement system"
 
   narrator "The controller opens a route away from the stage"
@@ -2624,7 +2621,7 @@ label accuse_rupnil:
 
   rupnil "mostly the body"
 
-  jump missing_body_investigaton
+  jump missing_body_investigation
 
 
 label missing_body_investigation:
@@ -2652,14 +2649,559 @@ label missing_body_investigation:
   jump exit_investigation
 
 
+label exit_investigation:
+  scene launch_hall
+  with dissolve
+
+  narrator "There are only a handful of ways out of the building"
+
+  player "If Rupnil moved Craw's body..."
+
+  player "...he had to use one of them"
+
+  jump check_exit_hub
 
 
+define checked_front = False
+define checked_side = False
+define checked_service = False
 
 
+label check_exit_hub:
+
+  if checked_front and checked_side and checked_service:
+    jump reconsider_body
+
+  menu:
+    "Check main exit" if not checked_front:
+      jump check_front_exit
+
+    "Check side exit" if not checked_side:
+      jump check_side_exit
+
+    "Check service exit" if not checked_service:
+      jump check_service_exit
 
 
+label check_front_exit:
+
+  $ checked_front = True
+
+  scene launch_hall
+
+  show trkl at pfp
+  with dissolve
+
+  player "You were outside during the evacuation, right?"
+
+  trkl "Yeah"
+
+  player "Did you see Rupnil leave?"
+
+  trkl "Eventually"
+
+  player "Eventually?"
+
+  trkl "With everyone else"
+
+  player "Was he carrying anything?"
+
+  trkl "No"
+
+  player "Did you see anyone carrying Craw?"
+
+  trkl "No"
+
+  player "Could someone have got past you?"
+
+  trkl "Probably"
+
+  player "Carrying a person?"
+
+  pause 1.0
+
+  trkl "Probably not"
+
+  hide trkl
+  with dissolve
+
+  narrator "The front exit doesn't work"
+
+  jump check_exit_hub
 
 
+label check_side_exit:
+
+  $ checked_side = True
+
+  scene launch_hall
+
+  show louis at pfp
+  with dissolve
+
+  player "What about the side entrance?"
+
+  louis "Locked"
+
+  player "The whole time?"
+
+  louis "After the alarm, yeah"
+
+  player "Could it be opened from inside?"
+
+  louis "Probably"
+
+  player "Did anyone?"
+
+  louis "The alarm log would show it"
+
+  player "There's an alarm log?"
+
+  louis "It's an emergency exit"
+
+  player "Right"
+
+  narrator "You check"
+
+  narrator "The door wasn't opened between 20:00 and 20:20"
+
+  hide louis
+  with dissolve
+
+  narrator "Two exits eliminated"
+
+  jump check_exit_hub
+
+
+label check_service_exit:
+
+  $ checked_service = True
+
+  scene corridor
+  with dissolve
+
+  narrator "That leaves the service exit"
+
+  narrator "Unlike the others, it isn't watched continuously"
+
+  player "Finally"
+
+  narrator "You remember Jam saying the locks electronally log access"
+
+  player "JAM! GET DOWN HERE!"
+
+  show jam at pfp
+  with dissolve
+
+  narrator "Jam comes running down"
+
+  jam "WHAT HAPPENED??"
+
+  player "No rush... I just wanted to ask you where these locks keep their logs"
+
+  pause 1.0
+
+  jam "You made me run for that?"
+
+  pause 1.0
+
+  player "..."
+
+  pause 1.0
+
+  jam "Fine. It looks like they connect to this access panel here"
+
+  narrator "Jam points to a yellowed box attached to the wall"
+
+  player "Can you access the logs?"
+
+  jam "Sure, just give me a moment"
+
+  pause 4.0
+
+  jam "{i}I'm in{/i}"
+
+  jam "Looks like the door opened at 19:43, and again at 20:26"
+
+  pause 1.0
+
+  player "..."
+
+  player "Nobody carried Craw through the service exit"
+
+  player "Then how did Rupnil get the body out?"
+
+  pause 1.0
+
+  narrator "For the first time, you don't have an answer"
+
+  jump check_exit_hub
+
+
+label reconsider_body:
+  scene launch_hall
+  with dissolve
+
+  player "Maybe the body never left"
+
+  narrator "That would solve the exits"
+
+  narrator "It would also mean Craw is still somewhere inside"
+
+  show tej at pfp
+  with dissolve
+
+  tej "We've checked the main rooms"
+
+  player "All of them?"
+
+  tej "Main hall, toilets, kitchen, upstairs rooms"
+
+  player "Storage?"
+
+  tej "Checked"
+
+  player "Backstage?"
+
+  tej "Checked"
+
+  player "And?"
+
+  tej "Nothing"
+
+  hide tej
+  with dissolve
+
+  player "So he didn't leave"
+
+  player "And he isn't here"
+
+  pause 1.0
+
+  player "That's impossible"
+
+  narrator "Unless one of those statements is wrong"
+
+  jump blood_result
+
+
+label blood_result:
+  scene launch_hall
+
+  show gl2011 at pfp
+  with dissolve
+
+  gl2011 "About that blood"
+
+  player "What about it?"
+
+  gl2011 "It's not blood"
+
+  pause 2.0
+
+  player "What?"
+
+  gl2011 "It's theatrical"
+
+  player "Theatrical blood?"
+
+  gl2011 "Yeah"
+
+  pause 1.0
+
+  player "You're sure?"
+
+  gl2011 "Unless Craw's circulatory system contains corn syrup"
+
+  pause 1.0
+
+  player "..."
+
+  hide gl2011
+  with dissolve
+
+  pause 2.0
+
+  player "What the f*ck is going on"
+
+  pause 2.0
+
+  $ current_act = 1
+
+  narrator "The evidence has changed"
+
+  $ details = get_evidence("Blood Sample")
+
+  narrator "Blood Sample: [details]"
+
+  pause 1.0
+
+  player "There was no blood"
+
+  narrator "No weapon"
+
+  player "No body"
+
+  narrator "No evidence that Craw was ever injured"
+
+  pause 1.0
+
+  player "Oh."
+
+  jump rethink_murder
+
+
+label rethink_murder:
+  scene stage
+  with dissolve
+
+  narrator "You return to where Craw fell"
+
+  narrator "Nothing about the scene has physically changed"
+
+  narrator "Only your interpretation of it"
+
+  player "Suppose nobody attacked Craw"
+
+  narrator "The blackout"
+
+  player "Craw requested it"
+
+  narrator "The impact"
+
+  player "Craw requested it"
+
+  narrator "The smoke"
+
+  player "Craw requested it"
+
+  narrator "The blood"
+
+  player "Fake"
+
+  narrator "The missing weapon"
+
+  player "There wasn't one"
+
+  pause 1.0
+
+  player "Then Craw didn't disappear after the murder"
+
+  player "The disappearance was the trick"
+
+  pause 1.0
+
+  narrator "You look at the stage again"
+
+  narrator "This time, you aren't looking for a weapon"
+
+  narrator "You're looking for a way out"
+
+  jump search_stage_escape
+
+
+label search_stage_escape:
+  scene stage
+
+  narrator "Behind the presentation equipment, several cables disappear beneath the stage"
+
+  narrator "You move one aside"
+
+  player "Wait"
+
+  narrator "One section of panelling doesn't quite line up with the rest"
+
+  narrator "You pull at it"
+
+  pause 1.0
+
+  narrator "It moves"
+
+  narrator "Behind it is a narrow service passage"
+
+  pause 2.0
+
+  player "..."
+
+  player "You've got to be kidding me"
+
+  scene corridor
+  with dissolve
+
+  narrator "The passage runs beneath the stage"
+
+  narrator "And towards the basement"
+
+  pause 1.0
+
+  player "The basement"
+
+  narrator "The same basement where Keyboard recorded traffic at 20:08"
+
+  narrator "The same basement where you found the red drop"
+
+  pause 1.0
+
+  player "That wasn't evidence of somebody moving Craw"
+
+  player "That was evidence of Craw moving himself"
+
+  jump final_act_one_deduction
+
+
+label final_act_one_deduction:
+  scene black
+  with fade
+
+  narrator "Five people helped construct the system"
+
+  narrator "Five people appeared to be involved in Craw's death"
+
+  narrator "But none of them knew the whole plan"
+
+  narrator "There was only one person connecting every piece"
+
+  pause 1.0
+
+  centered "{size=+10}WHO ORGANISED THE MURDER OF CRAW?{/size}"
+
+  jump choose_organiser
+
+
+label choose_organiser:
+  menu:
+    "Rupnil":
+      player "Rupnil knew the software..."
+      player "...but not the hardware, effects or schedule"
+      jump choose_organiser
+
+    "Fazin":
+      player "Fazin knew the effects..."
+      player "...but nothing else"
+      jump choose_organiser
+
+    "Jam":
+      player "Jam supplied the hardware..."
+      player "...without knowing what it controlled"
+      jump choose_organiser
+
+    "Keyboard":
+      player "Keyboard configured the network..."
+      player "...without knowing why"
+      jump choose_organiser
+
+    "Nayte":
+      player "Nayte scheduled the messages..."
+      player "...because somebody told him to"
+      jump choose_organiser
+
+    "Craw":
+      jump craw_deduction
+
+
+label craw_deduction:
+  scene stage
+  with dissolve
+
+  player "Craw"
+
+  pause 2.0
+
+  narrator "Fazin didn't choose the blackout"
+
+  narrator "Craw did"
+
+  narrator "Jam didn't design the system"
+
+  narrator "Craw commissioned it"
+
+  narrator "Keyboard didn't decide to connect the basement"
+
+  narrator "Craw asked him to"
+
+  narrator "Rupnil didn't decide what death.craw was for"
+
+  narrator "Craw gave him the specification"
+
+  narrator "Nayte didn't decide when Craw should appear online"
+
+  narrator "Craw gave him the schedule"
+
+  pause 1.0
+
+  player "Nobody murdered Craw"
+
+  pause 1.0
+
+  player "Craw murdered Craw"
+
+  pause 2.0
+
+  rupnil "what"
+
+  nayte "oh"
+
+  fazin "Huh?"
+
+  jam "..."
+
+  keyboard "what the"
+
+  player "Not literally"
+
+  pause 1.0
+
+  player "He faked his own death"
+
+  scene black
+  with fade
+
+  centered "{size=+12}CASE CLOSED{/size}"
+
+  pause 2.0
+
+  centered "{size=-5}probably{/size}"
+
+  pause 2.0
+
+  jump trapped_craw
+
+
+label trapped_craw:
+  scene black
+
+  pause 2.0
+
+  narrator "Somewhere beneath the building"
+
+  pause 2.0
+
+  unknown "..."
+
+  pause 1.0
+
+  unknown "Hello?"
+
+  pause 2.0
+
+  unknown "Can anyone hear me?"
+
+  pause 2.0
+
+  unknown "..."
+
+  pause 1.0
+
+  unknown "Bugger"
+
+  pause 2.0
+
+  centered "{size=+12}END OF ACT I{/size}"
+
+  centered "{size=+8}Thanks for testing Act I!{/size}"
+  pause 1.0
+  centered "Please send me any bugs, confusing clues, or moments where you guessed the twist early."
+  return
 
 
 
