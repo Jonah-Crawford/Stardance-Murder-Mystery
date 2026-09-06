@@ -31,6 +31,19 @@ default saw_fs_message = False
 default current_act = 0
 default collected_evidence = []
 
+define audio.click = "effects/click.ogg"
+define audio.notification = "effects/notification.ogg"
+define audio.crash = "effects/crash.ogg"
+define audio.alarm = "effects/alarm.ogg"
+define audio.clue = "effects/clue.ogg"
+
+define audio.meeting_room_welcome = "music/Meeting Room Welcome.mp3"
+define audio.case_notes = "music/Case Notes.mp3"
+define audio.suspect_trace = "music/Suspect Trace.mp3"
+define audio.silver_thread_verdict = "music/Silver Thread Verdict.mp3"
+define audio.wrong_footprint = "music/Wrong Footprint.mp3"
+define audio.basement_relay = "music/Basement Relay.mp3"
+
 init python:
   evidence_data = {
     "Programme Schedule": [
@@ -73,6 +86,36 @@ init python:
       "The basement shows evidence of being used by the murderer",
       "Craw used the basement to disappear",
       "Craw used the basement to disappear"
+    ],
+
+    "Execution Log": [
+      "Rupnil's control module executed at 20:07:03",
+      "The log proves Craw's prepared system executed on schedule",
+      "The execution was part of Craw's fake death"
+    ],
+
+    "Escape Program": [
+      "A section of Craw's code controls an unknown route",
+      "The second stage of Craw's escape never confirmed",
+      "Craw's escape program failed after the first door"
+    ],
+
+    "Relay Map": [
+      "Two relay outputs are connected to the basement system",
+      "The first relay succeeded and the second failed",
+      "The relays control the two doors of Craw's escape route"
+    ],
+
+    "Last Network Activity": [
+      "The basement system communicated after Craw disappeared",
+      "Craw's escape system remained active deeper in the basement",
+      "The last activity narrows Craw's location to the old service network"
+    ],
+
+    "Missing 20:30 Message": [
+      "Craw planned to take over from the scheduled messages at 20:30",
+      "Craw should have been free by 20:30 but never appeared",
+      "The missing message proves Craw's escape failed before 20:30"
     ]
 
   }
@@ -139,6 +182,8 @@ label start:
 
   scene launch_hall
   with dissolve
+
+  play music meeting_room_welcome fadein 2.0 loop
 
   narrator "For months, Stardance had existed almost entirely as messages, commits, project pages and questionable uses of compute time"
 
@@ -536,6 +581,8 @@ label party_transition:
 
   narrator "19:09"
 
+  play sound notification
+
   narrator "A notification sounds nearby"
 
   show craw at pfp
@@ -605,7 +652,7 @@ label project_showcase:
 
   narrator "Waits"
 
-  narrator "Then closes the terminal and returns"
+  narrator "Then closes the terminal, places his phone down, and returns"
 
   show craw at pfp
   with dissolve
@@ -744,6 +791,8 @@ label crawssembly_presentation:
 
   craw "Let's make it memorable"
 
+  stop music fadeout 1.5
+
   jump apparent_murder
 
 
@@ -759,6 +808,8 @@ label apparent_murder:
   pause 1.0
 
   narrator "20:07:04"
+
+  play sound crash
 
   narrator "{size=+12}CRASH.{/size}"
 
@@ -790,6 +841,8 @@ label apparent_murder:
 
   narrator "An alarm starts"
 
+  play sound alarm loop
+
   narrator "The room erupts"
 
   narrator "People are pushed towards the exits"
@@ -802,6 +855,8 @@ label apparent_murder:
   hide craw
 
   narrator "20:08"
+
+  stop sound fadeout 10.0
 
   narrator "Outside, nobody seems quite certain what just happened"
 
@@ -871,6 +926,8 @@ label act_one_begin:
   scene launch_hall
   with fade
 
+  play music case_notes fadein 2.0 loop
+
   jump investigation_hub
 
 
@@ -908,8 +965,6 @@ label investigate_stage:
 
   narrator "People have mostly backed away from the spot where Craw fell"
 
-  narrator "The emergency lights give everything an unpleasant red tint"
-
   narrator "The blood is still there"
 
   player "If someone attacked him here"
@@ -926,9 +981,9 @@ label investigate_stage:
 
   narrator "Nothing that looks remotely capable of explaining what you saw"
 
-  $ add_evidence("Weapon Missing")
-
   player "So where's the weapon?"
+
+  $ add_evidence("Weapon Missing")
 
   narrator "Nobody nearby seems to have an answer"
 
@@ -941,6 +996,8 @@ label investigate_stage:
   $ add_evidence("Blood Sample")
 
   $ details = get_evidence("Blood Sample")
+
+  play sound clue
 
   narrator "Blood Sample: [details]"
 
@@ -979,7 +1036,7 @@ label investigate_laptop:
 
   narrator "20:07:04 — AUDIO IMPACT"
 
-  narrator "20:07:09 — STAGE SMOKE"
+  narrator "20:07:20 — STAGE SMOKE"
 
   pause 0.5
 
@@ -1279,6 +1336,9 @@ label deeper_laptop_search:
   scene stage
   with dissolve
 
+  stop music fadeout 1.0
+  play music suspect_trace fadein 1.5 loop
+
   narrator "You return to Craw's laptop"
 
   narrator "This time, you aren't looking for the presentation"
@@ -1322,6 +1382,8 @@ label deeper_laptop_search:
   narrator "\"network.cfg\""
 
   narrator "\"controller.map\""
+
+  play sound clue
 
   pause 1.0
 
@@ -1767,6 +1829,9 @@ label question_keyboard:
   scene corridor
   with fade
 
+  stop music fadeout 1.0
+  play music basement_relay fadein 1.5 loop
+
   show keyboard at pfp_left
   with dissolve
 
@@ -1795,6 +1860,8 @@ label question_keyboard:
 
   narrator "You spot a tiny red drop on the floor by one of the locked doors"
 
+  play sound clue
+
   player "I think someone else has been down here since the murder"
 
   $ add_evidence("Basement System")
@@ -1813,6 +1880,9 @@ label question_keyboard:
 
   scene launch_hall
   with dissolve
+
+  stop music fadeout 1.0
+  play music suspect_trace fadein 1.5 loop
 
   jump technical_leads_hub
 
@@ -1846,6 +1916,8 @@ label technical_leads_complete:
   player "Why?"
 
   pause 1.0
+
+  play sound notification
 
   narrator "A notification sound cuts through the room"
 
@@ -2345,6 +2417,9 @@ label murder_reconstruction:
   scene black
   with fade
 
+  stop music fadeout 1.0
+  play music silver_thread_verdict fadein 1.5 loop
+
   centered "{size=+10}RECONSTRUCT THE MURDER{/size}"
 
   scene stage
@@ -2569,6 +2644,8 @@ label accuse_rupnil:
 
   pause 1.0
 
+  stop music
+
   rupnil "where's craw then"
 
   player "What?"
@@ -2627,6 +2704,8 @@ label accuse_rupnil:
 label missing_body_investigation:
   scene black
   with fade
+
+  play music wrong_footprint fadein 1.5 loop
 
   centered "{size=+10}WHERE IS CRAW?{/size}"
 
@@ -2928,6 +3007,8 @@ label blood_result:
 
   $ current_act = 1
 
+  play sound clue
+
   narrator "The evidence has changed"
 
   $ details = get_evidence("Blood Sample")
@@ -3044,7 +3125,9 @@ label search_stage_escape:
 
   player "That wasn't evidence of somebody moving Craw"
 
-  player "That was evidence of Craw moving himself"
+  play sound clue
+
+  player "It could have been Craw himself"
 
   jump final_act_one_deduction
 
@@ -3103,9 +3186,11 @@ label craw_deduction:
   scene stage
   with dissolve
 
+  stop music fadeout 2.0
+
   player "Craw"
 
-  pause 2.0
+  pause 2.0  
 
   narrator "Fazin didn't choose the blackout"
 
@@ -3170,6 +3255,8 @@ label craw_deduction:
 label trapped_craw:
   scene black
 
+  play music basement_relay fadein 3.0 volume 0.45
+
   pause 2.0
 
   narrator "Somewhere beneath the building"
@@ -3196,13 +3283,1527 @@ label trapped_craw:
 
   pause 2.0
 
+  stop music fadeout 2.0
+
   centered "{size=+12}END OF ACT I{/size}"
 
-  centered "{size=+8}Thanks for testing Act I!{/size}"
+  jump act_two_begin
+
+
+label act_two_begin:
+  scene black
+
+  pause 2.0
+
+  centered "{size=+12}ACT II{/size}"
+
+  pause 1.5
+
+  centered "{size=+10}WHY DID CRAW DISAPPEAR?{/size}"
+
+  pause 2.0
+
+  scene launch_hall
+  with fade
+
+  play music case_notes fadein 2.0
+
+  narrator "Back upstairs, the murder investigation has become considerably less murder-shaped"
+
+  show rupnil at pfp
+  with dissolve
+
+  rupnil "so"
+
+  pause 0.5
+
+  rupnil "can we stop accusing me now"
+
+  player "Probably"
+
+  rupnil "probably?"
+
+  player "I'm having a difficult evening"
+
+  rupnil "you accused me of murder"
+
+  player "Temporarily"
+
+  rupnil "what"
+
+  hide rupnil
+  with dissolve
+
+  narrator "The facts are different now"
+
+  narrator "There was no murder"
+
+  narrator "There was no weapon"
+
+  narrator "The blood was theatrical"
+
+  narrator "And every part of the apparent attack had been prepared in advance"
+
+  player "By Craw"
+
   pause 1.0
-  centered "Please send me any bugs, confusing clues, or moments where you guessed the twist early."
+
+  narrator "The question is no longer who killed him"
+
+  narrator "The question is why he wanted everyone to think he was dead"
+
+  narrator "{i}New objective: Find Craw's motive.{/i}"
+
+  jump act_two_motive_hub
+
+
+default act_two_checked_fs = False
+default act_two_checked_schedule = False
+default act_two_checked_basement = False
+
+
+label act_two_motive_hub:
+  scene launch_hall
+
+  if act_two_checked_fs and act_two_checked_schedule and act_two_checked_basement:
+    jump act_two_motive_complete
+
+  narrator "Several pieces of evidence now deserve another look"
+
+  menu:
+    "Reconsider the Fraud Squad investigation" if not act_two_checked_fs:
+      jump reconsider_fraud_squad
+
+    "Reconsider the scheduled messages" if not act_two_checked_schedule:
+      jump reconsider_schedule
+
+    "Reconsider the basement route" if not act_two_checked_basement:
+      jump reconsider_basement
+
+
+label reconsider_fraud_squad:
+  $ act_two_checked_fs = True
+
+  scene launch_hall
+  with dissolve
+
+  player "The Fraud Squad investigation"
+
+  narrator "Craw mentioned it before the party"
+
+  scene launch_hall_flashback
+  with dissolve
+
+  show craw at pfp_big
+  with dissolve
+
+  craw "{i}A distraction from this Fraud Squad investigation on me{/i}"
+
+  craw "{i}I've got a meeting with them after this{/i}"
+
+  hide craw
+  with dissolve
+
+  scene launch_hall
+  with dissolve
+
+  player "He wasn't hiding the fact he was being investigated"
+
+  narrator "But he was hiding how much it bothered him"
+
+  player "And then at 19:09..."
+
+  scene launch_hall_flashback
+  with dissolve
+
+  play sound notification
+
+  show craw at pfp
+  with dissolve
+
+  narrator "A notification"
+
+  narrator "Craw's expression changing"
+
+  craw "{i}Nothing important{/i}"
+
+  hide craw
+  with dissolve
+
+  scene launch_hall
+  with dissolve
+
+  player "That message"
+
+  player "If it was from Fraud Squad..."
+
+  narrator "Then Craw knew the investigation was still active immediately before the presentation"
+
+  pause 1.0
+
+  player "Maybe the disappearance wasn't part of the demo"
+
+  player "Maybe the demo was cover for the disappearance"
+
+  jump act_two_motive_hub
+
+
+label reconsider_schedule:
+  $ act_two_checked_schedule = True
+
+  scene launch_hall
+  with dissolve
+
+  show nayte at pfp
+  with dissolve
+
+  player "Nayte"
+
+  nayte "Yeah"
+
+  player "I need to go over the schedule again"
+
+  nayte "Ok"
+
+  player "Craw asked you to schedule messages after the presentation"
+
+  nayte "Yeah"
+
+  player "Why?"
+
+  nayte "Didn't say"
+
+  player "But he knew he wouldn't be around to post them himself"
+
+  nayte "Probably"
+
+  player "And he told you to stop at 20:30"
+
+  nayte "Yeah"
+
+  player "Because after that..."
+
+  nayte "He said he'd handle it himself"
+
+  pause 1.0
+
+  player "So he wasn't planning to vanish permanently"
+
+  nayte "Doesn't look like it"
+
+  pause 1.0
+
+  narrator "That changes something"
+
+  player "He wanted a temporary disappearance"
+
+  hide nayte
+  with dissolve
+
+  jump act_two_motive_hub
+
+
+label reconsider_basement:
+  $ act_two_checked_basement = True
+
+  scene corridor
+  with fade
+
+  play music basement_relay fadein 1.0
+
+  narrator "You return mentally to the basement"
+
+  narrator "At the time, the red drop looked like evidence of a body being moved"
+
+  narrator "Now..."
+
+  pause 1.0
+
+  player "It wasn't a body"
+
+  narrator "The drop wasn't evidence of somebody carrying Craw"
+
+  player "It was evidence of Craw passing through here himself"
+
+  narrator "Keyboard recorded traffic from the basement at 20:08"
+
+  narrator "One minute after the fake murder"
+
+  pause 1.0
+
+  player "So he reached the basement"
+
+  narrator "That much is almost certain"
+
+  player "Which means this wasn't just a fake death"
+
+  player "It was an escape route"
+
+  stop music fadeout 1.0
+  play music case_notes fadein 1.0
+
+  scene launch_hall
+  with dissolve
+
+  jump act_two_motive_hub
+
+
+label act_two_motive_complete:
+  scene launch_hall
+  with dissolve
+
+  narrator "The plan is beginning to make sense"
+
+  narrator "Craw knew Fraud Squad were still investigating him"
+
+  narrator "He arranged a fake death"
+
+  narrator "He prepared automated activity after the presentation"
+
+  narrator "He built an escape route through the basement"
+
+  narrator "And he intended to return"
+
+  pause 1.0
+
+  player "He wanted to disappear"
+
+  player "But only temporarily"
+
+  narrator "Long enough for the investigation to lose its target"
+
+  narrator "Long enough for people to believe something had happened to him"
+
+  pause 1.0
+
+  player "This whole thing..."
+
+  player "Was to get away from Fraud Squad"
+
+  pause 1.0
+
+  $ current_act = 2
+
+  narrator "The evidence has changed"
+
+  $ details = get_evidence("Fraud Squad Message")
+
+  narrator "Fraud Squad Message: [details]"
+
+  pause 1.0
+
+  player "So that's the motive"
+
+  player "He staged his own death to escape the investigation"
+
+  pause 1.0
+
+  narrator "For a moment, the room relaxes"
+
+  narrator "The mystery finally appears to have an explanation"
+
+  pause 2.0
+
+  jump act_two_time_check
+
+
+label act_two_time_check:
+  scene launch_hall
+
+  show nayte at pfp
+  with dissolve
+
+  nayte "Wait"
+
+  player "What?"
+
+  nayte "What time is it"
+
+  player "Why?"
+
+  nayte "Just check"
+
+  narrator "You look at the clock"
+
+  pause 1.0
+
+  narrator "20:34"
+
+  pause 2.0
+
+  player "..."
+
+  nayte "He said he'd handle everything after 20:30"
+
+  player "Yeah"
+
+  nayte "So"
+
+  pause 1.0
+
+  nayte "Where is he"
+
+  pause 2.0
+
+  hide nayte
+  with dissolve
+
+  stop music fadeout 2.0
+
+  narrator "The room goes quiet"
+
+  player "He should be back"
+
+  narrator "Four minutes ago, Craw expected to be available again"
+
+  narrator "No more scheduled messages"
+
+  narrator "No more automation"
+
+  narrator "No more reason to remain hidden"
+
+  pause 1.0
+
+  player "But he isn't here"
+
+  narrator "And nobody has heard from him"
+
+  pause 1.0
+
+  scene black
+  with fade
+
+  centered "{size=+10}WHERE IS CRAW?{/size}"
+
+  pause 2.0
+
+  scene launch_hall
+  with fade
+
+  play music case_notes fadein 1.5
+
+  narrator "{i}New objective: Find Craw.{/i}"
+
+  jump find_craw_hub
+
+
+default checked_rupnil_escape = False
+default checked_jam_hardware = False
+default checked_keyboard_logs = False
+default checked_fazin_timing = False
+default checked_nayte_schedule = False
+default retraced_escape_route = False
+
+default first_escape_deduction_done = False
+
+default escape_clue_count = 0
+
+
+label find_craw_hub:
+  scene launch_hall
+
+  if (
+    checked_rupnil_escape
+    and checked_jam_hardware
+    and checked_keyboard_logs
+    and checked_fazin_timing
+    and checked_nayte_schedule
+    and retraced_escape_route
+  ):
+    jump escape_evidence_complete
+
+  if (
+    checked_rupnil_escape
+    and checked_jam_hardware
+    and checked_keyboard_logs
+    and not first_escape_deduction_done
+  ):
+    jump first_escape_deduction
+
+  narrator "Craw constructed the plan from pieces"
+
+  narrator "Finding him means putting those pieces back together"
+
+  menu:
+    "Ask Rupnil about Craw's code" if not checked_rupnil_escape:
+      jump investigate_escape_code
+
+    "Inspect the controller with Jam" if not checked_jam_hardware:
+      jump investigate_door_hardware
+
+    "Check the network logs with Keyboard" if not checked_keyboard_logs:
+      jump investigate_network_logs
+
+    "Reconstruct the timing with Fazin" if not checked_fazin_timing:
+      jump investigate_escape_timing
+
+    "Go over the schedule with Nayte" if not checked_nayte_schedule:
+      jump investigate_automation_cutoff
+
+    "Retrace Craw's route" if not retraced_escape_route:
+      jump retrace_escape_route
+
+
+label investigate_escape_code:
+  $ checked_rupnil_escape = True
+  $ escape_clue_count += 1
+
+  scene stage
+  with dissolve
+
+  play music suspect_trace fadein 1.0
+
+  show rupnil at pfp
+  with dissolve
+
+  player "You wrote part of death.craw"
+
+  rupnil "Here we go again"
+
+  player "I'm not accusing you this time"
+
+  rupnil "great"
+
+  player "I need to know what Craw added around your code"
+
+  rupnil "Oh"
+
+  narrator "Rupnil takes the laptop"
+
+  narrator "He scrolls past the routine you found earlier"
+
+  rupnil "Mine ends here"
+
+  player "And the rest?"
+
+  rupnil "Craw wrote it"
+
+  narrator "Below Rupnil's routine is another section"
+
+  narrator "\"route.craw\""
+
+  player "What does it do?"
+
+  rupnil "Looks like a sequence"
+
+  rupnil "Trigger output"
+
+  rupnil "Wait for confirmation"
+
+  rupnil "Trigger another output"
+
+  player "The relays?"
+
+  rupnil "Probably"
+
+  player "Where do they lead?"
+
+  rupnil "No idea"
+
+  player "Of course"
+
+  rupnil "That's Jam's problem"
+
+  pause 1.0
+
+  rupnil "But there's something else"
+
+  player "What?"
+
+  rupnil "The second step never confirms"
+
+  pause 1.0
+
+  player "Meaning?"
+
+  rupnil "The second stage never reports completion"
+
+  player "So either it never ran..."
+
+  pause 1.0
+
+  rupnil "...or whatever it was waiting for never happened"
+
+  $ add_evidence("Escape Program")
+
+  play sound clue
+
+  hide rupnil
+  with dissolve
+
+  jump find_craw_hub
+
+
+label investigate_door_hardware:
+  $ checked_jam_hardware = True
+  $ escape_clue_count += 1
+
+  scene corridor
+  with fade
+
+  play music basement_relay fadein 1.0
+
+  show jam at pfp
+  with dissolve
+
+  player "Rupnil found two outputs in Craw's escape sequence"
+
+  jam "Ok"
+
+  player "I need to know what they control"
+
+  jam "Probably doors"
+
+  player "Can you be more specific?"
+
+  jam "Probably"
+
+  narrator "Jam examines the controller wiring"
+
+  narrator "Two relay lines disappear into the wall"
+
+  jam "First one's this door"
+
+  player "The corridor xit?"
+
+  jam "Yeah"
+
+  narrator "He follows the second cable"
+
+  jam "Other one goes further in"
+
+  player "Where?"
+
+  jam "Don't know yet"
+
+  player "Can you tell whether either one activated?"
+
+  jam "Maybe"
+
+  narrator "Jam checks the board"
+
+  pause 2.0
+
+  jam "Relay zero triggered"
+
+  player "And relay one?"
+
+  jam "Tried"
+
+  player "Tried?"
+
+  jam "No successful state"
+
+  $ add_evidence("Relay Map")
+
+  play sound clue
+
+  hide jam
+  with dissolve
+
+  jump find_craw_hub
+
+
+label investigate_network_logs:
+  $ checked_keyboard_logs = True
+  $ escape_clue_count += 1
+
+  scene launch_hall
+
+  show keyboard at pfp
+  with dissolve
+
+  player "Can we get more detail from the 20:08 connection?"
+
+  keyboard "Probably"
+
+  player "You said that machine got traffic"
+
+  keyboard "Yeah"
+
+  player "Where exactly?"
+
+  keyboard "Give me a sec"
+
+  narrator "Keyboard opens the network logs"
+
+  pause 2.0
+
+  keyboard "20:08:11"
+
+  keyboard "Connection established"
+
+  player "From Craw's laptop?"
+
+  keyboard "No"
+
+  pause 1.0
+
+  keyboard "From the basement controller"
+
+  player "Then what?"
+
+  keyboard "Couple packets"
+
+  keyboard "Then another device joins"
+
+  player "Another device?"
+
+  keyboard "Yeah"
+
+  keyboard "Local address"
+
+  player "Can you locate it?"
+
+  keyboard "Roughly"
+
+  narrator "Keyboard compares the address against the network map"
+
+  keyboard "Service network"
+
+  keyboard "Further inside the basement"
+
+  keyboard "That address isn't just on the service subnet"
+
+  keyboard "It's attached to one switch"
+
+  player "Where?"
+
+  keyboard "Looks like an old server room"
+
+  player "How long did it stay online?"
+
+  keyboard "Eleven seconds"
+
+  player "Then?"
+
+  keyboard "Nothing"
+
+  pause 1.0
+
+  player "So something reached something deeper inside"
+
+  keyboard "Probably"
+
+  player "And then the system went silent"
+
+  $ add_evidence("Last Network Activity")
+
+  play sound clue
+
+  hide keyboard
+  with dissolve
+
+  jump find_craw_hub
+
+
+label investigate_escape_timing:
+  $ checked_fazin_timing = True
+  $ escape_clue_count += 1
+
+  scene stage
+
+  show fazin at pfp
+  with dissolve
+
+  player "I need the exact effect timings"
+
+  fazin "Again?"
+
+  player "This time we're trying to find Craw"
+
+  fazin "Oh"
+
+  fazin "Yeah ok"
+
+  player "Blackout?"
+
+  fazin "20:07:03"
+
+  player "Impact?"
+
+  fazin "04"
+
+  player "Emergency lighting?"
+
+  fazin "About 08"
+
+  player "Smoke?"
+
+  fazin "20"
+
+  player "Evacuation?"
+
+  fazin "Around 30"
+
+  player "When was the stage completely obscured?"
+
+  fazin "Maybe 35"
+
+  player "And when did people start coming back?"
+
+  fazin "After 20:08"
+
+  pause 1.0
+
+  narrator "You reconstruct Craw's window"
+
+  narrator "He had less than a minute"
+
+  narrator "Not enough to leave the building normally"
+
+  player "But enough to get beneath the stage"
+
+  fazin "Probably"
+
+  player "And into the basement"
+
+  pause 1.0
+
+  narrator "Keyboard recorded basement activity almost immediately afterwards"
+
+  $ add_evidence("Escape Timing")
+
+  play sound clue
+
+  hide fazin
+  with dissolve
+
+  jump find_craw_hub
+
+
+label investigate_automation_cutoff:
+  $ checked_nayte_schedule = True
+  $ escape_clue_count += 1
+
+  scene launch_hall
+
+  show nayte at pfp
+  with dissolve
+
+  player "You said Craw told you to stop scheduling at 20:30"
+
+  nayte "Yeah"
+
+  player "Exactly what did he say?"
+
+  nayte "Don't schedule the launch complete message"
+
+  player "Why?"
+
+  nayte "Said he'd send that one himself"
+
+  pause 1.0
+
+  player "There was supposed to be another message?"
+
+  nayte "Yeah"
+
+  player "At 20:30?"
+
+  nayte "Yeah"
+
+  player "Did it send?"
+
+  nayte "No"
+
+  pause 2.0
+
+  player "So everything before 20:30 was automated"
+
+  nayte "Yeah"
+
+  player "And the first thing Craw planned to do personally..."
+
+  player "...never happened"
+
+  pause 1.0
+
+  $ add_evidence("Missing 20:30 Message")
+
+  play sound clue
+
+  hide nayte
+  with dissolve
+
+  jump find_craw_hub
+
+
+label retrace_escape_route:
+  $ retraced_escape_route = True
+  $ escape_clue_count += 1
+
+  scene stage
+  with dissolve
+
+  narrator "You return to the concealed passage beneath the stage"
+
+  player "Craw went this way"
+
+  scene corridor
+  with fade
+
+  play music basement_relay fadein 1.0
+
+  narrator "The passage leads back into the basement corridor"
+
+  narrator "The red drop is still there"
+
+  player "Theatrical blood"
+
+  narrator "Earlier, you thought it marked the path of a body"
+
+  player "It marked Craw's path"
+
+  narrator "The drop lies beyond the first electronic door"
+
+  narrator "You look further down the corridor"
+
+  narrator "There are several service doors"
+
+  narrator "Most are unmarked"
+
+  narrator "Beyond the first door, the corridor branches into an older service section"
+
+  narrator "Several doors disappear into the darkness"
+
+  player "So he got this far"
+
+  player "But that still leaves half the basement"
+
+  pause 1.0
+
+  player "There are too many rooms down here to start guessing"
+
+  $ add_evidence("Escape Trail")
+
+  play sound clue
+
+  stop music fadeout 1.0
+  play music case_notes fadein 1.0
+
+  scene launch_hall
+  with fade
+
+  jump find_craw_hub
+
+
+label first_escape_deduction:
+  $ first_escape_deduction_done = True
+
+  scene launch_hall
+
+  narrator "Several independent clues now agree"
+
+  narrator "Craw successfully left the stage"
+
+  narrator "He reached the basement"
+
+  narrator "And something failed after he got there"
+
+  player "So we're not looking for someone who disappeared"
+
+  pause 1.0
+
+  player "We're looking for someone who got stuck"
+
+  narrator "{i}Objective updated: Determine where Craw's escape failed.{/i}"
+
+  jump find_craw_hub
+
+
+label escape_evidence_complete:
+  scene black
+  with fade
+
+  stop music fadeout 1.0
+  play music silver_thread_verdict fadein 1.0
+
+  centered "{size=+10}RECONSTRUCT THE ESCAPE{/size}"
+
+  pause 1.0
+
+  scene launch_hall
+
+  narrator "You have all the pieces"
+
+  narrator "Now you need to put them in order"
+
+  jump escape_deduction_one
+
+
+label escape_deduction_one:
+  menu:
+    "What proves Craw reached the basement?"
+
+    "The scheduled messages":
+      player "Those only prove he planned ahead"
+      jump escape_deduction_one
+
+    "The theatrical blood trail":
+      player "The drop lies beyond the first locked door"
+      player "Craw made it into the basement"
+      jump escape_deduction_two
+
+    "Rupnil's module":
+      player "That proves the system ran, not where Craw was"
+      jump escape_deduction_one
+
+
+label escape_deduction_two:
+  menu:
+    "What proves the escape failed?"
+
+    "The missing weapon":
+      player "There never was a weapon"
+      jump escape_deduction_two
+
+    "The escape program":
+      player "The second stage never confirmed"
+      jump escape_deduction_three
+
+    "Fazin's smoke":
+      player "That gave Craw cover, but doesn't explain the failure"
+      jump escape_deduction_two
+
+
+label escape_deduction_three:
+  menu:
+    "What tells us where the failure occurred?"
+
+    "The relay map and network logs":
+      player "The first relay succeeded"
+      player "The second did not"
+      player "And the last network activity came from deeper inside the basement"
+      jump escape_reconstruction
+
+    "The Fraud Squad message":
+      player "That explains why Craw ran"
+      player "Not where he ended up"
+      jump escape_deduction_three
+
+    "The programme":
+      player "That tells us when he expected to return"
+      jump escape_deduction_three
+
+
+label escape_reconstruction:
+  scene stage_flashback
+  with fade
+
+  narrator "20:07:03"
+
+  show craw at pfp
+  with dissolve
+
+  narrator "Craw triggers the final sequence"
+
+  scene black
+
+  narrator "The lights go out"
+
+  narrator "The impact sound plays"
+
+  narrator "Craw falls"
+
+  scene stage_flashback
+  with dissolve
+
+  narrator "Emergency lighting returns"
+
+  narrator "Theatrical blood makes the scene look convincing"
+
+  narrator "Then the smoke begins"
+
+  scene black
+
+  narrator "Hidden from the room, Craw gets back up"
+
+  narrator "At 20:07:42, he slips beneath the stage"
+
+  scene corridor
+  with dissolve
+
+  narrator "He reaches the first electronic door"
+
+  narrator "Relay zero activates"
+
+  narrator "The door opens"
+
+  narrator "Craw enters"
+
+  pause 1.0
+
+  narrator "The door locks behind him"
+
+  narrator "Then the escape program requests relay one"
+
+  pause 1.0
+
+  narrator "No confirmation"
+
+  narrator "It requests again"
+
+  narrator "No confirmation"
+
+  pause 1.0
+
+  narrator "At 20:08, the network records its final activity"
+
+  pause 1.0
+
+  narrator "Then silence"
+
+  scene launch_hall
+  with fade
+
+  player "He didn't escape"
+
+  player "He got through the first door..."
+
+  player "...and couldn't get through the second"
+
+  jump locate_craw
+
+
+label locate_craw:
+  scene launch_hall
+
+  show rupnil at pfp_left
+  show jam at pfp_right
+  with dissolve
+
+  player "We know the failed step"
+
+  player "We need the physical location"
+
+  rupnil "Second output"
+
+  jam "I can trace it"
+
+  hide rupnil
+  hide jam
+  with dissolve
+
+  scene corridor
+  with fade
+
+  show jam at pfp
+  with dissolve
+
+  narrator "Jam follows the relay line along the wall"
+
+  jam "Goes through there"
+
+  player "Where?"
+
+  jam "Old service section"
+
+  hide jam
+  with dissolve
+
+  show keyboard at pfp
+  with dissolve
+
+  keyboard "That matches the last network address"
+
+  player "How close?"
+
+  keyboard "Same segment"
+
+  hide keyboard
+  with dissolve
+
+  show fazin at pfp
+  with dissolve
+
+  fazin "Could Craw get there by 20:08?"
+
+  player "From the stage?"
+
+  fazin "Yeah"
+
+  narrator "You compare the route against the effect timing"
+
+  player "Easily"
+
+  hide fazin
+  with dissolve
+
+  show nayte at pfp
+  with dissolve
+
+  nayte "And he couldn't still be hiding"
+
+  player "Because?"
+
+  nayte "20:30"
+
+  pause 1.0
+
+  hide nayte
+  with dissolve
+
+  narrator "Every clue points to the same section of the basement"
+
+  jump final_location_choice
+
+
+label final_location_choice:
+  scene black
+  with fade
+
+  centered "{size=+10}WHERE IS CRAW?{/size}"
+
+  menu:
+    "Electrical room":
+      player "The controller wiring doesn't terminate there"
+      jump final_location_choice
+
+    "Storage room":
+      player "The network logs don't match"
+      jump final_location_choice
+
+    "Old server room":
+      jump server_room_deduction
+
+    "Loading bay":
+      player "Craw would have been able to leave the building"
+      jump final_location_choice
+
+
+label server_room_deduction:
+  scene corridor
+  with dissolve
+
+  player "The old server room"
+
+  pause 1.0
+
+  keyboard "Network matches"
+
+  jam "Relay matches"
+
+  rupnil "Program matches"
+
+  fazin "Timing matches"
+
+  nayte "And he's late"
+
+  pause 1.0
+
+  player "He's in there"
+
+  play sound clue
+
+  stop music fadeout 1.0
+  play music basement_relay fadein 1.0
+
+  jump rescue_craw
+
+
+label rescue_craw:
+  scene corridor
+  with dissolve
+
+  narrator "You hurry down the service corridor"
+
+  narrator "Jam follows the relay line"
+
+  narrator "Keyboard keeps one eye on the network map"
+
+  narrator "Rupnil has Craw's code open"
+
+  narrator "Fazin checks the timing again"
+
+  narrator "Nayte checks the clock"
+
+  show jam at pfp_left
+  show keyboard at pfp_right
+  with dissolve
+
+  jam "This one"
+
+  player "You're sure?"
+
+  jam "Yeah"
+
+  keyboard "That looks like the right network"
+
+  hide jam
+  hide keyboard
+  with dissolve
+
+  narrator "At the end of the corridor is an old metal door"
+
+  narrator "A faded sign still clings to it"
+
+  narrator "\"SERVER ROOM\""
+
+  pause 1.0
+
+  jump open_server_room
+
+
+label open_server_room:
+  scene corridor
+
+  show rupnil at pfp_left
+  show jam at pfp_right
+  with dissolve
+
+  player "Can we open it?"
+
+  jam "Not normally"
+
+  rupnil "We have the controller"
+
+  player "And?"
+
+  rupnil "And Craw wrote the worst possible failure mode"
+
+  player "Meaning?"
+
+  rupnil "Door one locks behind you"
+
+  rupnil "Door two fails"
+
+  rupnil "Then the program waits forever"
+
+  pause 1.0
+
+  player "So he trapped himself"
+
+  rupnil "Yeah"
+
+  jam "I can bypass relay one"
+
+  player "Do it"
+
+  narrator "Jam reconnects two leads on the controller"
+
+  narrator "Rupnil changes a value in the running program"
+
+  narrator "Keyboard watches the endpoint"
+
+  pause 1.0
+
+  play sound click
+
+  narrator "The lock clicks"
+
+  pause 1.0
+
+  play sound clue
+
+  narrator "The door opens"
+
+  jump craw_rescued
+
+
+label craw_rescued:
+  scene server_room
+  with fade
+
+  narrator "The door opens"
+
+  narrator "For a moment, nobody moves"
+
+  narrator "The old server room is almost completely dark"
+
+  narrator "Only a few status lights blink from the racks"
+
+  narrator "Then something moves in the corner"
+
+  pause 1.0
+
+  show craw at pfp
+  with dissolve
+
+  pause 1.0
+
+  craw "..."
+
+  pause 1.0
+
+  craw "Hi"
+
+  pause 2.0
+
+  player "Craw"
+
+  craw "Yes"
+
+  player "You're alive"
+
+  craw "That was the intention"
+
+  pause 1.0
+
+  rupnil "BRO"
+
+  keyboard "what the"
+
+  fazin "Huh?"
+
+  jam "..."
+
+  nayte "lol"
+
+  pause 1.0
+
+  player "You faked your own murder??"
+
+  craw "Technically, yes"
+
+  player "You disappeared through the stage??"
+
+  craw "Yes"
+
+  player "You built an automated escape route??"
+
+  craw "Yes"
+
+  player "And then trapped yourself in a server room??"
+
+  pause 1.0
+
+  craw "..."
+
+  craw "Also yes"
+
+  pause 1.0
+
+  rupnil "skill issue"
+
+  craw "I have been in here for half an hour"
+
+  nayte "still skill issue"
+
+  craw "Ok avocabro"
+
+  pause 1.0
+
+  player "What happened?"
+
+  craw "The first door worked"
+
+  craw "It locked behind me"
+
+  craw "The second door was supposed to open"
+
+  craw "It didn't"
+
+  rupnil "Your program waited for confirmation forever"
+
+  craw "I gathered that"
+
+  jam "Could've used a door handle"
+
+  craw "The point was to automate it"
+
+  keyboard "How'd that go"
+
+  pause 1.0
+
+  craw "Badly"
+
+  pause 1.0
+
+  player "So all of this was because of Fraud Squad?"
+
+  pause 1.0
+
+  craw "...Mostly"
+
+  pause 1.0
+
+  player "Mostly?"
+
+  craw "I needed to disappear"
+
+  craw "Just for a little while"
+
+  craw "Long enough for the investigation to lose momentum"
+
+  player "And then come back at 20:30"
+
+  craw "Exactly"
+
+  nayte "You were late"
+
+  craw "I am aware"
+
+  pause 1.0
+
+  narrator "Craw steps out into the corridor"
+
+  narrator "For the first time all evening, the plan appears to be over"
+
+  player "Why didn't you just call someone?"
+
+  craw "My phone was upstairs"
+
+  player "Why?"
+
+  craw "Because dead people generally don't carry active phones"
+
+  pause 1.0
+
+  rupnil "you thought of that"
+
+  craw "Yes"
+
+  rupnil "but not the door"
+
+  craw "Correct"
+
+  hide craw
+  with dissolve
+
+  scene launch_hall
+  with dissolve
+
+  stop music fadeout 1.5
+  play music meeting_room_welcome fadein 1.5 loop
+
+  show craw at pfp_left
+  with dissolve
+
+  show nayte at pfp_right
+  with dissolve
+
+  narrator "Back upstairs, Nayte hands Craw the phone he left beside the stage"
+
+  craw "Thanks"
+
+  play sound notification
+
+  narrator "Almost immediately, the phone vibrates"
+
+  craw "..."
+
+  player "What now?"
+
+  craw "Fraud Squad..."
+
+  pause 2.0
+
+  craw "Oh Shi-"
+
+  scene black
+  with fade
+
+  centered "{size=+12}CASE CLOSED{/size}"
+
+  pause 1.5
+
+  centered "{size=-2}probably not{/size}"
+
+  pause 2.0
+
+  stop music fadeout 2.0
+
+  centered "Thank you for playing SMMG!\nA 'Cheese Grater Games' Creation, a subsidiary of Craw Systems."
+
   return
-
-
-
-
