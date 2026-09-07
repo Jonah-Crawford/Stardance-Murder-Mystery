@@ -1,4 +1,8 @@
-﻿define bird      = Character("BirBuh")
+﻿# Cheese Grater Games 2026 (C)
+
+default player_name = "You"
+
+define bird      = Character("BirBuh")
 define capy      = Character("Capy")
 define craw      = Character("Craw")
 define fazin     = Character("Fazin")
@@ -18,20 +22,11 @@ define water     = Character("Water")
 define narrator  = Character(None)
 define unknown   = Character("???")
 
-default player_name = "You"
-
-define player = Character("[player_name]")
-
-default saw_programme = False
-default saw_cable = False
-default saw_power_bank = False
-default heard_wifi_question = False
-default saw_fs_message = False
+define player    = Character("[player_name]")
 
 default current_act = 0
 default collected_evidence = []
 
-define audio.click = "effects/click.ogg"
 define audio.notification = "effects/notification.ogg"
 define audio.crash = "effects/crash.ogg"
 define audio.alarm = "effects/alarm.ogg"
@@ -117,7 +112,6 @@ init python:
       "Craw should have been free by 20:30 but never appeared",
       "The missing message proves Craw's escape failed before 20:30"
     ]
-
   }
 
   def add_evidence(evidence):
@@ -276,6 +270,12 @@ default met_rupnil = False
 default met_keyboard = False
 default met_fazin = False
 default met_jam = False
+
+default saw_programme = False
+default saw_cable = False
+default saw_power_bank = False
+default heard_wifi_question = False
+default saw_fs_message = False
 
 
 label party_hub:
@@ -632,13 +632,57 @@ label project_showcase:
 
   narrator "For the next twenty minutes, the room becomes a rapid sequence of demonstrations"
 
+  transform stage_walk:
+    xalign -0.25
+    yalign 0.42
+    zoom 0.8
+
+    linear 1.0 xalign 0.5
+    pause 0.3
+
+  show mixid at stage_walk
+
   narrator "Websites"
 
-  narrator "Hardware"
+  show mixid:
+    linear 1.0 xalign 1.25
+
+  pause 1.0
+
+  hide mixid
+
+  show keyboard at stage_walk
+
+  narrator "Tools"
+
+  show keyboard:
+    linear 1.0 xalign 1.25
+
+  pause 1.0
+
+  hide keyboard
+
+  show rupnil at stage_walk
 
   narrator "Games"
 
-  narrator "Tools whose purposes become less clear the longer their creators explain them"
+  show rupnil:
+    linear 1.0 xalign 1.25
+
+  pause 1.0
+
+  hide rupnil
+
+  show trkl at stage_walk
+
+  narrator "Projects whose purposes become less clear the longer their creators explain them"
+
+  show trkl:
+    linear 1.0 xalign 1.25
+
+  pause 1.0
+
+  hide trkl
 
   narrator "Craw spends most of it near the back of the audience"
 
@@ -4587,8 +4631,6 @@ label open_server_room:
   narrator "Keyboard watches the endpoint"
 
   pause 1.0
-
-  play sound click
 
   narrator "The lock clicks"
 
