@@ -5,11 +5,12 @@ default player_name = "You"
 define bird      = Character("BirBuh")
 define capy      = Character("Capy")
 define craw      = Character("Craw")
+define craw_dead = Character("CrawDead")
 define fazin     = Character("Fazin")
 define gizzy     = Character("Gizzy")
 define gl2011    = Character("GameLord")
 define jam       = Character("Jam")
-define keyboard  = Character("Keyboard")
+define keyboard  = Character("Keeb")
 define louis     = Character("Louis")
 define matei     = Character("Matei")
 define mixid     = Character("Mixid")
@@ -295,7 +296,7 @@ label party_hub:
     "Talk to Rupnil" if not met_rupnil:
       jump meet_rupnil
 
-    "Talk to Keyboard" if not met_keyboard:
+    "Talk to Keeb" if not met_keyboard:
       jump meet_keyboard
 
     "Talk to Fazin" if not met_fazin:
@@ -420,7 +421,7 @@ label meet_keyboard:
   show keyboard at pfp
   with dissolve
 
-  narrator "Keyboard is standing beside a second laptop and staring at a terminal window"
+  narrator "Keeb is standing beside a second laptop and staring at a terminal window"
 
   keyboard "Ahh I forgot to turn on my ssh server"
 
@@ -446,7 +447,7 @@ label meet_keyboard:
 
   player "Naturally... I've heard lots about it"
 
-  narrator "Keyboard types something else"
+  narrator "Keeb types something else"
 
   keyboard "ssh craw@92.237 blah blah blah"
 
@@ -861,8 +862,10 @@ label apparent_murder:
 
   narrator "For several seconds, nobody moves"
 
+  hide craw
+
   scene stage
-  show craw at pfp
+  show craw_dead at pfp
   with vpunch
 
   narrator "Then the emergency lights flicker on"
@@ -896,7 +899,7 @@ label apparent_murder:
   scene black
   with fade
 
-  hide craw
+  hide craw_dead
 
   narrator "20:08"
 
@@ -1465,7 +1468,7 @@ label deeper_laptop_search:
 
   narrator "A familiar host appears"
 
-  narrator "The same machine Keyboard was testing earlier"
+  narrator "The same machine Keeb was testing earlier"
 
   pause 1.0
 
@@ -1477,7 +1480,7 @@ label deeper_laptop_search:
 
   narrator "And none of them mentioned this"
 
-  narrator "{i}New leads: Rupnil, Jam, Keyboard.{/i}"
+  narrator "{i}New leads: Rupnil, Jam, Keeb.{/i}"
 
   jump technical_leads_hub
 
@@ -1501,7 +1504,7 @@ label technical_leads_hub:
     "Question Jam" if not questioned_jam:
       jump question_jam
 
-    "Question Keyboard" if not questioned_keyboard:
+    "Question Keeb" if not questioned_keyboard:
       jump question_keyboard
 
 
@@ -1751,7 +1754,7 @@ label question_keyboard:
   show keyboard at pfp
   with dissolve
 
-  player "Keyboard"
+  player "Keeb"
 
   keyboard "Yeah?"
 
@@ -1805,7 +1808,7 @@ label question_keyboard:
 
   keyboard "Yeah"
 
-  narrator "Keyboard takes the laptop"
+  narrator "Keeb takes the laptop"
 
   narrator "A few seconds pass"
 
@@ -1882,7 +1885,7 @@ label question_keyboard:
   show jam at pfp_right
   with dissolve
 
-  narrator "You, Jam, and Keyboard make your way downstairs, where you are met with a dark corrdior"
+  narrator "You, Jam, and Keeb make your way downstairs, where you are met with a dark corrdior"
 
   keyboard "This is where I tested the network from"
 
@@ -1941,7 +1944,7 @@ label technical_leads_complete:
 
   narrator "Jam supplied the hardware"
 
-  narrator "Keyboard configured the network"
+  narrator "Keeb configured the network"
 
   narrator "Fazin programmed the blackout"
 
@@ -2311,7 +2314,7 @@ label investigate_rupnil_means:
 
   pause 1.0
 
-  player "Keyboard made it reachable"
+  player "Keeb made it reachable"
 
   rupnil "Apparently"
 
@@ -2385,7 +2388,7 @@ label investigate_alibis:
   show mixid at pfp
   with dissolve
 
-  mixid "Keyboard was beside me"
+  mixid "Keeb was beside me"
 
   player "You're sure?"
 
@@ -2502,8 +2505,8 @@ label murder_reconstruction_contol:
       player "Jam supplied the hardware, but didn't know what it controlled"
       jump murder_reconstruction_contol
 
-    "Keyboard":
-      player "Keyboard configured the network, but didn't know the routine"
+    "Keeb":
+      player "Keeb configured the network, but didn't know the routine"
       jump murder_reconstruction_contol
 
 
@@ -2524,8 +2527,8 @@ label murder_reconstruction_means:
       player "Jam doesn't know what his hardware controlled"
       jump murder_reconstruction_means
 
-    "Keyboard":
-      player "Keyboard had access, but didn't write the death.craw script"
+    "Keeb":
+      player "Keeb had access, but didn't write the death.craw script"
       jump murder_reconstruction_means
 
 
@@ -2546,8 +2549,8 @@ label murder_reconstruction_motive:
       player "Jam seemed happy to help Craw with hardware"
       jump murder_reconstruction_motive
 
-    "Keyboard":
-      player "Keyboard seemed happy to help Craw with networking"
+    "Keeb":
+      player "Keeb seemed happy to help Craw with networking"
       jump murder_reconstruction_motive
 
 
@@ -3161,7 +3164,7 @@ label search_stage_escape:
 
   player "The basement"
 
-  narrator "The same basement where Keyboard recorded traffic at 20:08"
+  narrator "The same basement where Keeb recorded traffic at 20:08"
 
   narrator "The same basement where you found the red drop"
 
@@ -3212,8 +3215,8 @@ label choose_organiser:
       player "...without knowing what it controlled"
       jump choose_organiser
 
-    "Keyboard":
-      player "Keyboard configured the network..."
+    "Keeb":
+      player "Keeb configured the network..."
       player "...without knowing why"
       jump choose_organiser
 
@@ -3244,7 +3247,7 @@ label craw_deduction:
 
   narrator "Craw commissioned it"
 
-  narrator "Keyboard didn't decide to connect the basement"
+  narrator "Keeb didn't decide to connect the basement"
 
   narrator "Craw asked him to"
 
@@ -3569,7 +3572,7 @@ label reconsider_basement:
 
   player "It was evidence of Craw passing through here himself"
 
-  narrator "Keyboard recorded traffic from the basement at 20:08"
+  narrator "Keeb recorded traffic from the basement at 20:08"
 
   narrator "One minute after the fake murder"
 
@@ -3775,7 +3778,7 @@ label find_craw_hub:
     "Inspect the controller with Jam" if not checked_jam_hardware:
       jump investigate_door_hardware
 
-    "Check the network logs with Keyboard" if not checked_keyboard_logs:
+    "Check the network logs with Keeb" if not checked_keyboard_logs:
       jump investigate_network_logs
 
     "Reconstruct the timing with Fazin" if not checked_fazin_timing:
@@ -3969,7 +3972,7 @@ label investigate_network_logs:
 
   keyboard "Give me a sec"
 
-  narrator "Keyboard opens the network logs"
+  narrator "Keeb opens the network logs"
 
   pause 2.0
 
@@ -4001,7 +4004,7 @@ label investigate_network_logs:
 
   keyboard "Roughly"
 
-  narrator "Keyboard compares the address against the network map"
+  narrator "Keeb compares the address against the network map"
 
   keyboard "Service network"
 
@@ -4104,7 +4107,7 @@ label investigate_escape_timing:
 
   pause 1.0
 
-  narrator "Keyboard recorded basement activity almost immediately afterwards"
+  narrator "Keeb recorded basement activity almost immediately afterwards"
 
   $ add_evidence("Escape Timing")
 
@@ -4554,7 +4557,7 @@ label rescue_craw:
 
   narrator "Jam follows the relay line"
 
-  narrator "Keyboard keeps one eye on the network map"
+  narrator "Keeb keeps one eye on the network map"
 
   narrator "Rupnil has Craw's code open"
 
